@@ -1,101 +1,83 @@
-import Image from "next/image";
+import Image from 'next/image';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-[#1A1624] text-white rounded-sm">
+      {/* Banner Section */}
+      <div
+        className="relative h-40 md:h-48 lg:h-56 bg-cover bg-center rounded-t-sm"
+        style={{
+          backgroundImage: "url('/images/spiderman.jpg')",
+          backgroundBlendMode: "multiply",
+          backgroundColor: "rgba(26,22,36,0.4)" // A dark overlay
+        }}
+      />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+
+
+      {/* Profile Picture & Basic Info */}
+      <div className="container mx-auto px-4 -mt-16 flex flex-col items-center rounded-sm">
+        {/* Profile Picture (floats over banner) */}
+
+        <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white shadow-lg overflow-hidden">
+          <Image
+            src="/images/me.jpg"  // Use your actual filename
+            alt="Profile Picture"
+            fill
+            className="object-cover"
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+
+        {/* Name & Bio */}
+        <div className="mt-4 text-center">
+          <h1 className="text-2xl md:text-3xl font-bold">Loïc Rutabana</h1>
+          <p className="mt-1 opacity-80">
+            A short bio or tagline goes here.
+            {/* e.g. "Software Developer & Fitness Enthusiast" */}
+          </p>
+          {/* Edit Profile Button (optional) */}
+          <button className="mt-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-sm font-semibold rounded transition-shadow shadow-md hover:shadow-lg">
+            Edit Profile
+          </button>
+
+        </div>
+      </div>
+
+      {/* Main Sections */}
+      <div className="container mx-auto px-4 py-8 space-y-4">
+        {/* Daily Dashboard */}
+        <section className="bg-[#2A2336] rounded-lg p-4">
+          <h2 className="text-xl font-semibold mb-2">Daily Dashboard</h2>
+          <p className="text-sm opacity-90">
+            Keep track of daily workouts, calorie intake, or any quick stats you’d like to highlight.
+          </p>
+        </section>
+
+        {/* Goals & Achievements */}
+        <section className="bg-[#2A2336] rounded-lg p-4">
+          <h2 className="text-xl font-semibold mb-2">Goals & Achievements</h2>
+          <p className="text-sm opacity-90">
+            Set and track milestones for fitness, projects, or personal development. Show badges or progress bars.
+          </p>
+        </section>
+
+        {/* Personal Journal */}
+        <section className="bg-[#2A2336] rounded-lg p-4">
+          <h2 className="text-xl font-semibold mb-2">Personal Journal</h2>
+          <p className="text-sm opacity-90">
+            Reflect on daily experiences. Toggle entries as public or private.
+          </p>
+        </section>
+
+        {/* Project Timeline */}
+        <section className="bg-[#2A2336] rounded-lg p-4">
+          <h2 className="text-xl font-semibold mb-2">Project Timeline</h2>
+          <p className="text-sm opacity-90">
+            Highlight past achievements and upcoming projects in a visual timeline.
+          </p>
+        </section>
+      </div>
     </div>
   );
 }
