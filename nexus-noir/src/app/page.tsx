@@ -50,22 +50,22 @@ export default function HomePage() {
           stats={[
             {
               label: 'Blog Posts',
-              value: 12,
+              value: 2,
               icon: <BookOpenIcon className="h-6 w-6 text-gray-400" />,
             },
             {
               label: 'Workouts This Month',
-              value: 8,
+              value: 1,
               icon: <FireIcon className="h-6 w-6 text-gray-400" />,
             },
             {
               label: 'Books Read',
-              value: 3,
+              value: 0,
               // No icon provided, defaults to LightBulbIcon in QuickStats
             },
             {
               label: 'Total Weight Lost (lbs)',
-              value: 15,
+              value: 0,
               icon: <TrophyIcon className="h-6 w-6 text-gray-400" />,
             },
           ]}
