@@ -37,7 +37,6 @@ export default function QuickStats({ stats }: QuickStatsProps) {
               )}
             </div>
 
-            {/* Stat Value (gradient text) */}
             <span className="text-3xl font-extrabold bg-gradient-to-r from-blue-400 to-indigo-500 text-transparent bg-clip-text">
               {stat.value}
             </span>
