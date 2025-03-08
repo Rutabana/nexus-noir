@@ -36,22 +36,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {/* Nav links on the right */}
             <ul className="flex space-x-4">
               <li>
-                <a href="/" className="text-blue-500 font-bold hover:underline">
+                <a href="/" className="text-blue-500 hover:underline">
                   Home
                 </a>
               </li>
               <li>
-                <a href="/dashboard" className="text-blue-500 font-bold hover:underline">
+                <a href="/dashboard" className="text-blue-500 hover:underline">
                   Dashboard
                 </a>
               </li>
               <li>
-                <a href="/journal" className="text-blue-500 font-bold hover:underline">
+                <a href="/journal" className="text-blue-500 hover:underline">
                   Journal
                 </a>
               </li>
               <li>
-                <a href="/timeline" className="text-blue-500 font-bold hover:underline">
+                <a href="/timeline" className="text-blue-500 hover:underline">
                   Timeline
                 </a>
               </li>
