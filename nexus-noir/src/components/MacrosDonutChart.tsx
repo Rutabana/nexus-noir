@@ -9,7 +9,7 @@ import {
   Tooltip,
   Legend
 } from 'chart.js';
-import { DailyEntry } from './types';
+import { DailyEntry } from '../lib/types';
 
 ChartJS.register(ArcElement, Title, Tooltip, Legend);
 

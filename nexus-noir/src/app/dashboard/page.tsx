@@ -6,13 +6,15 @@ import CaloriesBarChart from '@/components/CaloriesBarChart';
 import MacrosDonutChart from '@/components/MacrosDonutChart';
 import RecentWorkouts from '@/components/RecentWorkouts';
 import GoalProgress from '@/components/GoalProgress';
-import HabitTracker from '@/components/HabbitTracker';
 import ReadingProgress from '@/components/ReadingProgress';
 import BlogPreview from '@/components/BlogPreview';
-import { DailyEntry } from '@/components/types';
+import WorkoutsHeatmap from '@/components/WorkoutsHeatmap';
+import CalorieHeatMap from '@/components/CalorieHeatMap';
+import { DailyEntry } from '@/lib/types';
+import { mockPosts } from '@/lib/mock-data';
 
 export default function DashboardPage() {
-  // Mock data stored in state
+  // Mock daily data
   const [dailyData] = useState<DailyEntry[]>([
     {
       date: '2025-03-04',
@@ -40,9 +42,8 @@ export default function DashboardPage() {
     },
   ]);
 
-
-  // The most recent entry for the macros donut chart
   const lastEntry = dailyData[dailyData.length - 1];
+  const firstPost = mockPosts[0];
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 space-y-6 text-white">
@@ -63,13 +64,18 @@ export default function DashboardPage() {
         <CaloriesBarChart dailyData={dailyData} />
       </div>
 
-      <BlogPreview
-        coverImage="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fbnjevgo1az84ffnugk3y.jpg"
-        title="Project Nairobi Update: Progress, Pitfalls, and Lessons Learned"
-        authorName="Loïc Rutabana"
-        authorPic="/images/me.jpg"
-        previewText="In my previous post, I introduced Project Nairobi, a distributed analytics platform I’m building on AWS..."
-      />
+      {/* Featured Blog (using the first mock post) */}
+      {firstPost && (
+        <BlogPreview
+          slug={firstPost.slug}
+          coverImage={firstPost.coverImage}
+          title={firstPost.title}
+          authorName={firstPost.authorName}
+          authorPic={firstPost.authorPic}
+          previewText={firstPost.previewText}
+          tags={firstPost.tags}
+        />
+      )}
 
       {/* Bottom Row: Macros & Workouts */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -77,6 +83,7 @@ export default function DashboardPage() {
         <RecentWorkouts dailyData={dailyData} />
       </div>
 
+      {/* Goal Progress & Reading Progress */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <GoalProgress
           startingWeight={275}
@@ -84,22 +91,28 @@ export default function DashboardPage() {
           targetWeight={185}
           previousWeight={dailyData[dailyData.length - 2].weight}
         />
-
-        <div className='md:col-span-2'>
+        <div className="md:col-span-2">
           <ReadingProgress
             currentBook={{
               title: 'Harry Potter and the Goblet of Fire',
               author: 'JK Rowling',
               progress: 45,
               lastRead: '2025-03-03',
-              coverImage: 'https://www.bigw.com.au/medias/sys_master/images/images/hb3/hb4/32806100238366.jpg',
+              coverImage:
+                'https://www.bigw.com.au/medias/sys_master/images/images/hb3/hb4/32806100238366.jpg',
             }}
           />
         </div>
-
       </div>
 
-      <HabitTracker />
+      {/* Habit Tracker (Heatmap Style) */}
+      <div className="mt-8">
+        <WorkoutsHeatmap />
+      </div>
+
+      <div className='mt-8'>
+        <CalorieHeatMap />
+      </div>
     </div>
   );
 }

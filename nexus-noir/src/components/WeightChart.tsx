@@ -12,7 +12,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { DailyEntry } from './types';
+import { DailyEntry } from '../lib/types';
 
 ChartJS.register(
   LineElement,
@@ -50,6 +50,7 @@ export default function WeightChart({ dailyData }: WeightChartProps) {
       title: {
         display: true,
         text: 'Weight Over Time',
+        color: '#fff', // optional if you want the title in white
       },
       legend: {
         labels: {
@@ -64,6 +65,9 @@ export default function WeightChart({ dailyData }: WeightChartProps) {
       y: {
         ticks: { color: '#fff' },
         beginAtZero: false,
+        // Adjust these to "zoom out" your chart
+        suggestedMin: 265,
+        suggestedMax: 280,
       },
     },
   };

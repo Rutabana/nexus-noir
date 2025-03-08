@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import QuickStats from '@/components/QuickStats';
 import FeaturedBlog from '@/components/FeaturedBlog';
-import CardLinks from '@/components/CardLinks';
 import FocusAreas from '@/components/FocusAreas';
+import CardLinks from '@/components/CardLinks';
 import {
   CodeBracketIcon,
   BookOpenIcon,
@@ -10,8 +10,12 @@ import {
   TrophyIcon,
   SparklesIcon,
 } from '@heroicons/react/24/outline';
+import { mockPosts } from '@/lib/mock-data'; // <-- import your mock data
 
 export default function HomePage() {
+  // Grab the last post from mockPosts
+  const lastPost = mockPosts[mockPosts.length - 1];
+
   return (
     <div className="min-h-screen bg-[#1A1624] text-white">
       {/* Banner Section */}
@@ -50,7 +54,7 @@ export default function HomePage() {
           stats={[
             {
               label: 'Blog Posts',
-              value: 2,
+              value: mockPosts.length,
               icon: <BookOpenIcon className="h-6 w-6 text-gray-400" />,
             },
             {
@@ -61,7 +65,6 @@ export default function HomePage() {
             {
               label: 'Books Read',
               value: 0,
-              // No icon provided, defaults to LightBulbIcon in QuickStats
             },
             {
               label: 'Total Weight Lost (lbs)',
@@ -71,21 +74,24 @@ export default function HomePage() {
           ]}
         />
 
-        {/* Featured Blog */}
-        <FeaturedBlog
-          coverImage="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fkxdaogfg3kzlkqjgfwho.jpg"
-          title="Project Nairobi: Building a Distributed Analytics Platform on AWS"
-          snippet="Have you ever wanted to take your side projects to the next level, having them process thousands of data points per second"
-          link="https://dev.to/zuba/project-nairobi-building-a-distributed-analytics-platform-on-aws-4abo"
-        />
+        {/* Featured Blog (using the last post) */}
+        {lastPost && (
+          <FeaturedBlog
+            coverImage={lastPost.coverImage}
+            title={lastPost.title}
+            snippet={lastPost.previewText}
+            link={`/journal/${lastPost.slug}`} // or an external link if you prefer
+          />
+        )}
 
+        {/* Focus & Passions */}
         <FocusAreas
           areas={[
             {
               title: 'Coding',
               description: 'Low-level programming, custom builds, and tooling.',
               icon: <CodeBracketIcon className="h-8 w-8 text-blue-400" />,
-              backgroundImage: '/images/coding.jpg', // or external URL
+              backgroundImage: '/images/coding.jpg',
             },
             {
               title: 'Fitness',
