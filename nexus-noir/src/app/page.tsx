@@ -10,14 +10,14 @@ import {
   TrophyIcon,
   SparklesIcon,
 } from '@heroicons/react/24/outline';
-import { mockPosts } from '@/lib/mock-data'; // <-- import your mock data
+import { mockPosts } from '@/lib/mock-data';
 
 export default function HomePage() {
   // Grab the last post from mockPosts
   const lastPost = mockPosts[mockPosts.length - 1];
 
   return (
-    <div className="min-h-screen bg-[#1A1624] text-white">
+    <div className="min-h-screen bg-[#1A1624] text-white styled-scrollbar">
       {/* Banner Section */}
       <div
         className="relative h-40 md:h-48 lg:h-56 bg-cover bg-center"
