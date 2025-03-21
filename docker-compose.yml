@@ -1,0 +1,48 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    container_name: nexus_db
+    env_file: .env
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  express:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: nexus_express
+    env_file: .env
+    environment:
+      DB_HOST: db
+      DB_USER: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+      DB_NAME: ${MYSQL_DATABASE}
+      PORT: ${EXPRESS_PORT}
+    ports:
+      - "${EXPRESS_PORT}:3033"
+    depends_on:
+      - db
+
+  nextjs:
+    build:
+      context: ./nexus-noir
+      dockerfile: Dockerfile
+    container_name: nexus_next
+    env_file: .env
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:${EXPRESS_PORT}"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - express
+
+volumes:
+  db_data:
