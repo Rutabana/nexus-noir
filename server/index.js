@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2');
@@ -44,7 +44,7 @@ app.post('/api/posts', (req, res) => {
     );
 });
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.EXPRESS_PORT;
 app.listen(PORT, () => {
     console.log(`Express server running on port ${PORT}`);
 });
