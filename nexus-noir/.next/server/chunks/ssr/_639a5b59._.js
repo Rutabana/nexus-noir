@@ -102,6 +102,21 @@ const mockPosts = [
         authorPic: '/images/me.jpg',
         previewText: 'This is a preview of my first blog post. I have a lot to share about my journey in coding, fitness, and life. Stay tuned for more insights...',
         contentPath: '/blogs/first.md'
+    },
+    {
+        id: 2,
+        slug: 'project-nairobi-update-progress-pitfalls-and-lessons-learned',
+        coverImage: '/images/dusk-skyline-veil.jpg',
+        title: 'Project Nairobi Update: Progress, Pitfalls, and Lessons Learned',
+        authorName: 'Loïc Rutabana',
+        tags: [
+            __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$util$2f$tags$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["tags"].PersonalProjects,
+            __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$util$2f$tags$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["tags"].AWS,
+            __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$util$2f$tags$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["tags"].DistributedSystems
+        ],
+        authorPic: '/images/me.jpg',
+        previewText: 'In my previous post, I introduced Project Nairobi, a distributed analytics platform I’m building on AWS to handle IoT data at scale...',
+        contentPath: '/blogs/second.md'
     }
 ];
 const timelineEvents = [

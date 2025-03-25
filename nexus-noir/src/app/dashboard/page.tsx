@@ -10,6 +10,8 @@ import ReadingProgress from '@/components/ReadingProgress';
 import BlogPreview from '@/components/BlogPreview';
 import WorkoutsHeatmap from '@/components/WorkoutsHeatmap';
 import CalorieHeatMap from '@/components/CalorieHeatMap';
+import ReadingHeatMap from '@/components/ReadingHeatMap';
+import CodingHeatMap from '@/components/CodingHeatMap';
 import { DailyEntry } from '@/lib/types';
 import { mockPosts } from '@/lib/mock-data';
 
@@ -83,13 +85,12 @@ export default function DashboardPage() {
         <RecentWorkouts dailyData={dailyData} />
       </div>
 
-      {/* Goal Progress & Reading Progress */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <GoalProgress
           startingWeight={275}
-          currentWeight={dailyData[dailyData.length - 1].weight}
+          currentWeight={268.2}
           targetWeight={185}
-          previousWeight={dailyData[dailyData.length - 2].weight}
+          previousWeight={268.8}
         />
         <div className="md:col-span-2">
           <ReadingProgress
@@ -112,6 +113,14 @@ export default function DashboardPage() {
 
       <div className='mt-8'>
         <CalorieHeatMap />
+      </div>
+
+      <div className="mt-8">
+        <ReadingHeatMap />
+      </div>
+
+      <div className="mt-8">
+        <CodingHeatMap />
       </div>
     </div>
   );
