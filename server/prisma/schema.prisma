@@ -10,33 +10,76 @@ generator client {
 model User {
   id             Int      @id @default(autoincrement())
   username       String   @unique
-  email          String   @unique
-  password       String
   profilePicture String?
-  posts          Post[]
+  email          String   @unique
+  hashedPassword String?
+  authProvider   AuthProvider  @default(email)
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+  macros         Macros[]
+}
+
+enum AuthProvider {
+  email
+  google
+  github
+  apple
+  facebook
+  microsoft
+  twitter
+  gitlab
+  discord
 }
 
 model Post {
   id          Int      @id @default(autoincrement())
+  userId      Int
   title       String
   content     String
   coverImage  String?
-  tags        String? // You can store JSON here or a comma-separated string
-  author      User     @relation(fields: [userId], references: [id])
-  userId      Int
+  tags        TagOnPost[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  @@index([userId])
 }
 
-// Migration 2: Adding activity logs (for heat maps)
-model ActivityLog {
+model Tag {
+  id          Int      @id @default(autoincrement())
+  content     String   @unique
+  color       String
+  category    Category?
+  posts       TagOnPost[]
+}
+
+enum Category {
+  coding
+  fitness
+  reading
+  creativity
+}
+
+model TagOnPost {
+  postId      Int
+  tagId       Int
+  post        Post     @relation(fields: [postId], references: [id])
+  tag         Tag      @relation(fields: [tagId], references: [id])
+  @@id([postId, tagId])
+  @@index([postId])
+  @@index([tagId])
+}
+
+model Activity {
   id          Int       @id @default(autoincrement())
-  date        DateTime
+  date        DateTime  @db.Date
   userId      Int
+  intensity   Int
+  details     Json?
+  image       String?
+  description String?
+  type        ActivityType
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  @@index([userId, date])
 }
 
 enum ActivityType {
@@ -44,4 +87,19 @@ enum ActivityType {
   calorie_deficit
   reading
   coding
+}
+
+model Macros {
+  id          Int @id @default(autoincrement())
+  userId      Int
+  protein     Int
+  carbs       Int
+  fat         Int
+  caloriesIn  Int
+  caloriesOut Int?
+  date        DateTime @db.Date
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id])
+  @@index([userId, date])
 }
