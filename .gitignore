@@ -42,3 +42,7 @@ next-env.d.ts
 
 # server environment variables
 .env
+/server/.env
+
+# I think this is cache
+.next/*
