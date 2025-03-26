@@ -46,3 +46,5 @@ next-env.d.ts
 
 # I think this is cache
 nexus-noir/.next/*
+nexus-noir/public/blogs
+nexus-noir/public/images
