@@ -45,4 +45,4 @@ next-env.d.ts
 /server/.env
 
 # I think this is cache
-.next/*
+nexus-noir/.next/*
