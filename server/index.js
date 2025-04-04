@@ -48,3 +48,9 @@ const PORT = process.env.EXPRESS_PORT;
 app.listen(PORT, () => {
     console.log(`Express server running on port ${PORT}`);
 });
+
+app.use('/api/users', userRoutes);
+app.use('/api/posts', postRoutes);
+app.use('/api/activities', activityRoutes);
+app.use('/api/stats', statsRoutes);
+app.use('/api/books', bookRoutes);

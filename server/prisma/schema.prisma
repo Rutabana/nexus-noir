@@ -116,6 +116,7 @@ model HealthRecord {
   weightGoal  Decimal?   // kg
   height      Float?   // cm
   recordedAt  DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   notes       String? 
   @@index([userId, recordedAt])
 }
